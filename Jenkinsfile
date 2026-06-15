@@ -2,32 +2,38 @@ pipeline {
     agent any
 
     stages {
-        stage('cloning java repository') {
+        stage('Cloning Java Repository') {
             steps {
-               git 'https://github.com/Sharath-yp25/java.git'
+                git 'https://github.com/Sharath-yp25/java.git'
             }
         }
-        
-        stage('Compiling and executing java project') {
+
+        stage('Compile and Execute Java Project') {
             steps {
-               bat '''javac Test.javac
-                      java Test'''
+                bat '''
+                    javac Test.java
+                    java Test
+                '''
             }
         }
-        
-        
-      }
-      post{
-          scuccess{
-              mail bcc: '',
-              body: 'ok china build is compleated thankyou',
-              cc: 'sidharth2222005@gmail.com',
-              from: '',
-              replyTo: '',
-              subject: 'Build scccess',
-              to: 'sidhu2222005@gmail.com'
-          }
-      }
     }
-    
-    
+
+    post {
+        success {
+            mail(
+                to: 'sidhu2222005@gmail.com',
+                cc: 'sidharth2222005@gmail.com',
+                subject: 'Build Success',
+                body: 'Build completed successfully. Thank you.'
+            )
+        }
+
+        failure {
+            mail(
+                to: 'sidhu2222005@gmail.com',
+                subject: 'Build Failed',
+                body: 'The Jenkins build has failed. Please check the console output.'
+            )
+        }
+    }
+}
