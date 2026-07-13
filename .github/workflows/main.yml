@@ -1,21 +1,23 @@
 name: java-project
+
 on:
   push:
-    branches: ['Master']
+    branches:
+      - Master
 
 jobs:
   build:
-     runs-on: ubuntu-latest
+    runs-on: ubuntu-latest
 
-     steps:
-       - name: cloning java project
-         uses: actions/checkout@v7.0.0
+    steps:
+      - name: Cloning Java Project
+        uses: actions/checkout@v4
 
-        - name: install  java
-          uses:  actions/setup-java@v5.5.0
-          with: 
-            java-version: '21'
-            distribution: "temurin"
+      - name: Install Java
+        uses: actions/setup-java@v5
+        with:
+          java-version: '21'
+          distribution: 'temurin'
 
-        - name: Generating package for maven project
-          run: java --version 
+      - name: Check Java Version
+        run: java --version
