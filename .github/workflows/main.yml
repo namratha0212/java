@@ -3,7 +3,7 @@ name: java-project
 on:
   push:
     branches:
-      - Master
+      - master
 
 jobs:
   build:
