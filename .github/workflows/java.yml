@@ -1,0 +1,19 @@
+name: java project
+on: 
+  push:
+    branches: ['master']
+
+jobs:
+  build:
+    runs-on: self-hosted
+
+
+    steps:
+      - name: cloning guthub repo
+        uses: actions/checkout@v7.0.0
+
+      - name: compile java
+        run: javac Test.java
+
+      - name: execute java
+        run: javac Test 
