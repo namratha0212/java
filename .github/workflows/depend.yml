@@ -8,7 +8,7 @@ jobs:
 
     steps:
       - name: setup java
-        uses: actions/setup-java@v5.6.0
+        uses: actions/setup-java@v5
         with:
           java-version: '21'
           distribution: 'temurin'
@@ -20,7 +20,7 @@ jobs:
 
     steps:
       - name: cloneing
-        uses: actions/checkout@v7.0.0
+        uses: actions/checkout@v4
         
       - name: execute
         run: mvn package
