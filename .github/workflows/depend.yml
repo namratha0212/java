@@ -1,0 +1,35 @@
+name: demo depen
+on: 
+  workflow_dispatch:
+
+jobs:
+  java:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: setup java
+        uses: actions/setup-java@v5.6.0
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+
+
+  maven:
+    needs: new-job
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: cloneing
+        uses: actions/checkout@v7.0.0
+        
+      - name: execute
+        run: mvn package
+
+  new-job:
+    needs: java
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: checking maven
+        run: mvn --version
+
